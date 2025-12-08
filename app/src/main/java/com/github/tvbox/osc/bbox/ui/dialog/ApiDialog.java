@@ -354,7 +354,7 @@ public class ApiDialog extends BaseDialog {
     private void putDefaultApis(String url) {
         URL.DOMAIN_NAME_PROXY = url;
         // 默认线路地址
-        String defaultApiName = "自备份线路";
+        String defaultApiName = "免费分享不喜勿用";
         String defaultApi = url + URL.DEFAULT_API_URL;
         // 默认仓库地址
         String defaultStoreApi = url + URL.DEFAULT_STORE_API_URL;
