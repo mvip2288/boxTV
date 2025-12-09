@@ -125,6 +125,7 @@ public class App extends MultiDexApplication {
         putDefault(HawkConfig.PLAY_TYPE, 1);
         putDefault(HawkConfig.PLAY_SCALE, 3);
         putDefault(HawkConfig.HOME_REC, 0);
+        putDefault(HawkConfig.SHOW_PREVIEW, false);
         // 默认渲染方式：推荐手机使用0-texture，电视1-surface
         putDefault(HawkConfig.PLAY_RENDER, 1);
         putDefault(HawkConfig.IJK_CODEC, "硬解码");
