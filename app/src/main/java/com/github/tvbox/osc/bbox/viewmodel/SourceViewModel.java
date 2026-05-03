@@ -521,6 +521,7 @@ public class SourceViewModel extends ViewModel {
         String id = urlid;
 
         SourceBean sourceBean = ApiConfig.get().getSource(sourceKey);
+        // LOG.d("sourceBean = " + sourceBean);
         int type = sourceBean.getType();
         if (type == 3) {
             spThreadPool.execute(new Runnable() {
@@ -645,6 +646,7 @@ public class SourceViewModel extends ViewModel {
                         public void onError(Response<String> response) {
                             super.onError(response);
                             // searchResult.postValue(null);
+                            // LOG.d("function: public void getSearch(String sourceKey, String wd) type == 0 || type == 1");
                             EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, null));
                         }
                     });
@@ -685,6 +687,7 @@ public class SourceViewModel extends ViewModel {
                             LOG.i("echo-t4 search-onError");
                             super.onError(response);
                             // searchResult.postValue(null);
+                            // LOG.d("function: public void getSearch(String sourceKey, String wd) type == 4");
                             EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, null));
                         }
                     });
@@ -766,6 +769,7 @@ public class SourceViewModel extends ViewModel {
                         public void onError(Response<String> response) {
                             super.onError(response);
                             // searchResult.postValue(null);
+                            // LOG.d("function: public void getQuickSearch(String sourceKey, String wd) type == 4");
                             EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, null));
                         }
                     });
@@ -1270,6 +1274,7 @@ public class SourceViewModel extends ViewModel {
             AbsXml data = (AbsXml) xstream.fromXML(xml);
             absXml(data, sourceKey);
             if (searchResult == result) {
+                // LOG.d("function: private AbsXml xml(MutableLiveData<AbsXml> result, String xml, String sourceKey)");
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, data));
             } else if (quickSearchResult == result) {
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_QUICK_SEARCH_RESULT, data));
@@ -1284,6 +1289,7 @@ public class SourceViewModel extends ViewModel {
             return data;
         } catch (Exception e) {
             if (searchResult == result) {
+                // LOG.d("function: private AbsXml xml(MutableLiveData<AbsXml> result, String xml, String sourceKey)");
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, null));
             } else if (quickSearchResult == result) {
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_QUICK_SEARCH_RESULT, null));
@@ -1318,6 +1324,7 @@ public class SourceViewModel extends ViewModel {
             AbsXml data = absJson.toAbsXml();
             absXml(data, sourceKey);
             if (searchResult == result) {
+                // LOG.d("function: private AbsXml json(MutableLiveData<AbsXml> result, String json, String sourceKey)"+data);
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, data));
             } else if (quickSearchResult == result) {
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_QUICK_SEARCH_RESULT, data));
@@ -1331,13 +1338,14 @@ public class SourceViewModel extends ViewModel {
             }
             return data;
         } catch (Exception e) {
-            if (searchResult == result) {
+            /* if (searchResult == result) {
+                // LOG.d("function: private AbsXml json(MutableLiveData<AbsXml> result, String json, String sourceKey)");
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_SEARCH_RESULT, null));
             } else if (quickSearchResult == result) {
                 EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_QUICK_SEARCH_RESULT, null));
             } else if (result != null) {
                 result.postValue(null);
-            }
+            } */
             return null;
         }
     }
